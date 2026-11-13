@@ -1,0 +1,38 @@
+:root {
+  --bg: #f2f5f3; --surface: #ffffff; --ink: #10231c; --muted: #4a5d54;
+  --line: #d3ddd7; --primary: #0a6b4b; --primary-ink: #ffffff;
+  --accent: #f2a900; --error: #b42318; --error-bg: #fef3f2;
+  --r-sm: 8px; --r-md: 14px; --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 40px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.55 var(--font-body), system-ui, sans-serif; min-height: 100dvh; }
+.shell { max-width: 28rem; min-height: 100dvh; margin: 0 auto; padding: var(--s4) var(--s3); display: flex; flex-direction: column; gap: var(--s5); }
+.brand { display: flex; align-items: center; gap: var(--s2); font: 600 1.0625rem var(--font-display); }
+.brand svg { color: var(--primary); }
+h1 { font: 700 clamp(2rem, 8vw, 2.5rem)/1.05 var(--font-display); letter-spacing: -0.02em; margin: 0 0 var(--s2); }
+.lead { color: var(--muted); margin: 0; max-width: 32ch; }
+
+/* Le ticket : élément mémorable, reprend la forme du ticket papier vendu sur place. */
+.ticket { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); display: flex; flex-direction: column; overflow: hidden; }
+.ticket-main { padding: var(--s4) var(--s3) var(--s3); }
+.ticket-stub { padding: var(--s3); border-top: 2px dashed var(--line); position: relative; }
+.ticket-stub::before, .ticket-stub::after { content: ""; position: absolute; top: -9px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); }
+.ticket-stub::before { left: -9px; }
+.ticket-stub::after { right: -9px; }
+label { display: block; font-weight: 600; margin-bottom: var(--s2); }
+.hint { color: var(--muted); font-size: 0.875rem; margin: var(--s2) 0 0; }
+input[type="text"] { width: 100%; min-height: 56px; padding: 0 var(--s3); font: 600 1.5rem var(--font-display), system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; font-variant-numeric: tabular-nums; color: var(--ink); background: var(--bg); border: 2px solid var(--line); border-radius: var(--r-sm); }
+input[type="text"]::placeholder { color: #8fa197; }
+input[aria-invalid="true"] { border-color: var(--error); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+input[type="text"]:focus-visible { border-color: var(--ink); outline-offset: 0; }
+button { width: 100%; min-height: 52px; border: 0; border-radius: var(--r-sm); background: var(--primary); color: var(--primary-ink); font: 600 1.0625rem var(--font-body), system-ui, sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); transition: background-color .15s; }
+button:hover:not(:disabled) { background: #08573c; }
+button:disabled { opacity: .65; cursor: not-allowed; }
+.error { margin: var(--s3) 0 0; padding: var(--s2) var(--s3); background: var(--error-bg); color: var(--error); border-radius: var(--r-sm); font-size: .9375rem; }
+.spinner { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.foot { margin-top: auto; color: var(--muted); font-size: .875rem; }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2s; } button { transition: none; } }
+@media (min-width: 640px) { .shell { padding-top: var(--s5); } }
